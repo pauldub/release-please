@@ -43,11 +43,8 @@ const CHANGELOG_SECTIONS = [
 export class HPackYoshi extends ReleasePR {
   protected async _run(): Promise<number | undefined> {
     const packageName = await this.getPackageName();
-    const lastReleaseSha: string | undefined = this.lastPackageVersion
-      ? await this.gh.getTagSha(
-          `${packageName.getComponent()}/v${this.lastPackageVersion}`
-        )
-      : undefined;
+    const latestTag: GitHubTag | undefined = await this.latestTag();
+    const lastReleaseSha: string | undefined = latestTag?.sha;
     const commits: Commit[] = await this.commits({
       sha: lastReleaseSha,
       path: packageName.name,
