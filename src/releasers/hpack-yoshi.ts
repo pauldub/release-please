@@ -47,7 +47,6 @@ export class HPackYoshi extends ReleasePR {
     const lastReleaseSha: string | undefined = latestTag?.sha;
     const commits: Commit[] = await this.commits({
       sha: lastReleaseSha,
-      path: packageName.name,
     });
     if (commits.length === 0) {
       logger.warn(`no commits found since ${lastReleaseSha}`);
