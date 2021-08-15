@@ -31,6 +31,7 @@ import {TerraformModule} from './terraform-module';
 import {Rust} from './rust';
 import {OCaml} from './ocaml';
 import {Helm} from './helm';
+import {HPackYoshi} from './hpack-yoshi';
 
 // add any new releasers you create to this type as well as the `releasers`
 // object below.
@@ -51,7 +52,8 @@ export type ReleaseType =
   | 'rust'
   | 'simple'
   | 'terraform-module'
-  | 'helm';
+  | 'helm'
+  | 'hpack-yoshi';
 
 type Releasers = Record<ReleaseType, typeof ReleasePR>;
 
@@ -73,6 +75,7 @@ const releasers: Releasers = {
   simple: Simple,
   'terraform-module': TerraformModule,
   helm: Helm,
+  'hpack-yoshi': HPackYoshi
 };
 
 export function getReleasers(): Releasers {
